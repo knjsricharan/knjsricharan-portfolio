@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ───────────────────────────────────────── */
+:root {
+  --bg:    #F5F5F5;
+  --ink:   #111110;
+  --ink-2: #444441;
+  --ink-3: #888780;
+  --rule:  #D3D1C7;
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+/* ── Smooth Scroll ───────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Global Base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Content Width Constraint ────────────────────────────── */
+.container {
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* ── Typography Helpers ──────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+code, kbd, samp, pre,
+.label, .tag, nav {
+  font-family: var(--font-mono);
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+}
