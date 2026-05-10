@@ -4,7 +4,7 @@ import Hero     from './components/Hero';
 import Projects from './components/Projects';
 import About    from './components/About';
 import Skills   from './components/Skills';
-import Blog     from './components/Blog';
+// import Blog     from './components/Blog';
 import Contact  from './components/Contact';
 import Footer   from './components/Footer';
 
@@ -19,7 +19,6 @@ function PortfolioMain() {
       <Projects />
       <About />
       <Skills />
-      <Blog />
       <Contact />
     </main>
   );

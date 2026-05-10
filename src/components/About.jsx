@@ -30,7 +30,7 @@ const About = () => {
               className="mb-6"
               style={{ fontFamily: 'var(--font-heading)', fontSize: '42px', color: 'var(--ink)', lineHeight: 1.2 }}
             >
-              I'm Charan.
+              I'm Sri Charan Kurada.
             </h2>
             <div 
               className="flex flex-col gap-5"

@@ -18,10 +18,10 @@ const Contact = () => {
       formRef.current, 
       'YOUR_PUBLIC_KEY'
     )
-    .then((result) => {
+    .then(() => {
         setStatus('success');
         formRef.current.reset();
-    }, (error) => {
+    }, () => {
         setStatus('error');
     });
   };

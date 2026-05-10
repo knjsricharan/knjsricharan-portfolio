@@ -7,7 +7,6 @@ const Navbar = () => {
   const links = [
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
-    { name: 'Blog', href: '#blog' },
     { name: 'GitHub', href: 'https://github.com/knjsricharan' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -29,7 +28,7 @@ const Navbar = () => {
           className="uppercase tracking-widest font-mono"
           style={{ fontSize: '13px', color: 'var(--ink)' }}
         >
-          Charan Kurada
+          Sri Charan Kurada
         </a>
 
         {/* Right: Desktop Links */}
