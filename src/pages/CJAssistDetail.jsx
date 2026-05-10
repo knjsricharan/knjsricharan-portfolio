@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+const ease = [0.16, 1, 0.3, 1];
+
 const SectionLabel = ({ children }) => (
-  <div 
+  <div
     className="font-mono uppercase mb-3 tracking-widest"
     style={{ fontSize: '10px', color: 'var(--ink-3)' }}
   >
@@ -12,83 +14,96 @@ const SectionLabel = ({ children }) => (
 
 const CJAssistDetail = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
-      viewport={{ once: false }}
+    <motion.div
+      initial={{ opacity: 0, y: 22 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease }}
       className="w-full max-w-[800px] mx-auto py-16 px-8 text-left"
     >
-      {/* Top Back Link */}
-      <Link 
-        to="/" 
-        className="inline-block mb-12 font-mono hover:opacity-70 transition-opacity"
+      <Link
+        to="/"
+        className="inline-block mb-12 font-mono nav-link"
         style={{ fontSize: '12px', color: 'var(--ink-3)' }}
       >
         &larr; Back to Portfolio
       </Link>
 
-      {/* Header */}
       <header className="mb-8">
-        <div 
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
           className="font-mono uppercase mb-4 tracking-widest"
           style={{ fontSize: '10px', color: 'var(--ink-3)' }}
         >
           02 &mdash; AI &middot; Full-Stack
-        </div>
-        <h1 
+        </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.12 }}
           className="mb-4"
           style={{ fontFamily: 'var(--font-heading)', fontSize: '48px', color: 'var(--ink)', lineHeight: 1.1 }}
         >
           CJ Assist
-        </h1>
-        <p 
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.16 }}
           className="italic mb-8"
           style={{ fontSize: '18px', color: 'var(--ink-2)' }}
         >
           Multi-provider AI comparison platform with real-time cost and latency tracking
-        </p>
+        </motion.p>
 
-        {/* Links */}
-        <div className="flex flex-wrap gap-4">
-          <a 
-            href="https://github.com/knjsricharan/cj-assist" 
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease, delay: 0.2 }}
+          className="flex flex-wrap gap-4"
+        >
+          <a
+            href="https://github.com/knjsricharan/cj-assist"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 font-medium transition-transform hover:-translate-y-0.5"
-            style={{ 
-              backgroundColor: 'transparent', 
+            className="px-5 py-2.5 font-medium"
+            style={{
+              backgroundColor: 'transparent',
               color: 'var(--ink)',
               fontSize: '13px',
-              border: '1px solid var(--ink)'
+              border: '1px solid var(--ink)',
+              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
             }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
             GitHub &rarr;
           </a>
-          <a 
-            href="#" 
+          <a
+            href="https://cj-assist.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 font-medium transition-transform hover:-translate-y-0.5"
-            style={{ 
-              backgroundColor: 'var(--ink)', 
+            className="px-5 py-2.5 font-medium"
+            style={{
+              backgroundColor: 'var(--ink)',
               color: 'var(--bg)',
               fontSize: '13px',
-              border: '1px solid var(--ink)'
+              border: '1px solid var(--ink)',
+              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
             }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >
             Live Demo &rarr;
           </a>
-        </div>
+        </motion.div>
       </header>
 
-      {/* Divider */}
       <hr className="my-8" style={{ borderTop: '1px solid var(--rule)' }} />
 
-      {/* Main Content */}
       <div className="flex flex-col gap-12" style={{ color: 'var(--ink)' }}>
-        
-        {/* Problem */}
+
         <section>
           <SectionLabel>Problem</SectionLabel>
           <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
@@ -96,7 +111,6 @@ const CJAssistDetail = () => {
           </p>
         </section>
 
-        {/* Solution */}
         <section>
           <SectionLabel>Solution</SectionLabel>
           <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
@@ -104,7 +118,6 @@ const CJAssistDetail = () => {
           </p>
         </section>
 
-        {/* Key Features */}
         <section>
           <SectionLabel>Key Features</SectionLabel>
           <ul className="list-disc list-inside space-y-2" style={{ fontSize: '15px' }}>
@@ -117,7 +130,6 @@ const CJAssistDetail = () => {
           </ul>
         </section>
 
-        {/* Technical Design */}
         <section>
           <SectionLabel>Technical Design</SectionLabel>
           <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
@@ -125,7 +137,6 @@ const CJAssistDetail = () => {
           </p>
         </section>
 
-        {/* Tech Stack */}
         <section>
           <SectionLabel>Tech Stack</SectionLabel>
           <div className="overflow-x-auto">
@@ -160,12 +171,11 @@ const CJAssistDetail = () => {
           </div>
         </section>
 
-        {/* Image Placeholder */}
         <section>
-          <div 
+          <div
             className="w-full h-[400px] flex flex-col items-center justify-center border"
-            style={{ 
-              backgroundColor: 'var(--bg)', 
+            style={{
+              backgroundColor: 'var(--bg)',
               borderColor: 'var(--rule)'
             }}
           >
@@ -177,11 +187,10 @@ const CJAssistDetail = () => {
 
       </div>
 
-      {/* Footer Back Link */}
       <div className="mt-16 pt-8 border-t" style={{ borderColor: 'var(--rule)' }}>
-        <Link 
-          to="/" 
-          className="inline-block font-mono hover:opacity-70 transition-opacity"
+        <Link
+          to="/"
+          className="inline-block font-mono nav-link"
           style={{ fontSize: '12px', color: 'var(--ink-3)' }}
         >
           &larr; Back to Portfolio

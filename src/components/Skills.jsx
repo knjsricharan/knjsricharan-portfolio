@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { useDirectionalReveal } from '../hooks/useDirectionalReveal';
+
+const ease = [0.16, 1, 0.3, 1];
 
 const skillsData = [
   {
@@ -36,49 +39,61 @@ const skillsData = [
 ];
 
 const Skills = () => {
+  const sectionRef = useDirectionalReveal();
+
   return (
-    <section id="skills" className="py-20 text-left">
+    <section id="skills" className="py-20 text-left" ref={sectionRef}>
       <div className="w-full max-w-[1100px] mx-auto px-8">
-        
+
         {/* Section Label */}
-        <div 
-          className="font-mono uppercase pb-3 mb-10 border-b tracking-widest"
-          style={{ 
-            fontSize: '12px', 
-            color: 'var(--ink-3)',
-            borderColor: 'var(--rule)'
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-40px' }}
+          transition={{ duration: 0.7, ease }}
+          className="section-reveal section-label mb-6"
         >
           Stack
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col gap-8 max-w-[720px]">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-40px' }}
+          transition={{ duration: 0.7, ease, delay: 0.08 }}
+          className="section-reveal mb-10 pb-6 border-b"
+          style={{ borderColor: 'var(--rule)' }}
+        >
+          <h2
+            style={{ fontFamily: 'var(--font-heading)', fontSize: '32px', color: 'var(--ink)', lineHeight: 1.2 }}
+          >
+            Technologies &amp; Tools
+          </h2>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 max-w-[900px]">
           {skillsData.map((group, index) => (
-            <motion.div 
+            <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              viewport={{ once: false }}
+              viewport={{ once: false, margin: '-40px' }}
+              transition={{ duration: 0.7, ease, delay: index * 0.06 }}
+              className="section-reveal"
             >
-              <div 
-                className="font-mono uppercase mb-3 tracking-widest"
-                style={{ fontSize: '11px', color: 'var(--ink-3)' }}
-              >
-                {group.category}
-              </div>
+              <div className="section-label mb-4">{group.category}</div>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill, idx) => (
-                  <span 
+                  <span
                     key={idx}
-                    className="inline-flex items-center font-mono"
-                    style={{ 
-                      fontSize: '12px', 
-                      color: 'var(--ink)', 
-                      backgroundColor: 'transparent',
+                    style={{
+                      fontSize: '12px',
+                      color: 'var(--ink)',
                       border: '1px solid var(--rule)',
-                      padding: '5px 12px',
-                      borderRadius: '0'
+                      padding: '6px 12px',
+                      letterSpacing: '0.02em'
                     }}
                   >
                     {skill}

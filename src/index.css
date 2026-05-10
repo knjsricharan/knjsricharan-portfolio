@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,14 +12,56 @@
   --ink-3: #888780;
   --rule:  #D3D1C7;
 
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
   --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
   --font-body:    'Inter', system-ui, sans-serif;
+
+  /* ── Motion Tokens ─────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.37, 0, 0.63, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 700ms;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Scroll Progress Indicator ─────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background-color: var(--ink);
+  opacity: 0.2;
+  z-index: 9997;
+  transition: width 0.1s linear;
+  will-change: width;
 }
 
 /* ── Smooth Scroll ───────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+}
+
+/* ── Section Reveal System ───────────────────────────────── */
+.reveal-section {
+  will-change: opacity, transform;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Global Base ─────────────────────────────────────────── */
@@ -35,15 +77,15 @@ body {
   background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── Content Width Constraint ────────────────────────────── */
 .container {
-  max-width: 720px;
+  max-width: 800px;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
@@ -65,3 +107,234 @@ hr {
   border: none;
   border-top: 1px solid var(--rule);
 }
+
+/* ── Section Labels ──────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-3);
+}
+
+/* ── Micro Interactions ──────────────────────────────────── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--ink);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Smooth Transitions ──────────────────────────────────── */
+.smooth-transition {
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Custom Cursor ───────────────────────────────────────── */
+.cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-ring {
+  width: 18px;
+  height: 18px;
+  border: 0.75px solid var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  opacity: 0.15;
+  will-change: transform;
+}
+
+body.cursor-hover .cursor-ring {
+  width: 26px;
+  height: 26px;
+  opacity: 0.3;
+}
+
+/* ── Interactive Elements ────────────────────────────────── */
+.interactive-card {
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.interactive-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Selection Styling ───────────────────────────────────── */
+::selection {
+  background-color: var(--ink);
+  color: var(--bg);
+}
+
+/* ── Focus States ────────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+}
+
+/* ── Section Reveal Utilities ─────────────────────────────── */
+.section-reveal {
+  will-change: opacity, transform;
+}
+
+/* Base: hidden below */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-expo),
+    transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+/* ── Enter ─────────────────────────────────────────────── */
+
+/* Enter from below (scroll down) */
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enter from above (scroll up) */
+.section-reveal[data-reveal-dir="up"].is-visible {
+  transform: translateY(0);
+}
+
+/* Apply upward start pos when scrolling up */
+html[data-scroll-dir="up"] .section-reveal {
+  transform: translateY(-18px);
+}
+
+html[data-scroll-dir="up"] .section-reveal.is-visible {
+  transform: translateY(0);
+}
+
+/* ── Exit ─────────────────────────────────────────────── */
+
+/* Exiting: fade out in the same direction it entered */
+.section-reveal.is-exiting {
+  opacity: 0;
+  transition:
+    opacity 350ms var(--ease-out-expo),
+    transform 350ms var(--ease-out-expo);
+}
+
+/* Exited: stays hidden */
+.section-reveal[data-exiting="true"]:not(.is-visible) {
+  opacity: 0;
+}
+
+/* Exit direction: up (entered from below, scrolling down) */
+.section-reveal[data-exit-dir="up"] {
+  transform: translateY(-18px);
+}
+
+/* Exit direction: down (entered from above, scrolling up) */
+.section-reveal[data-exit-dir="down"] {
+  transform: translateY(18px);
+}
+
+.section-reveal-delay-1 { transition-delay: 80ms; }
+.section-reveal-delay-2 { transition-delay: 160ms; }
+.section-reveal-delay-3 { transition-delay: 240ms; }
+.section-reveal-delay-4 { transition-delay: 320ms; }
+.section-reveal-delay-5 { transition-delay: 400ms; }
+.section-reveal-delay-6 { transition-delay: 480ms; }
+.section-reveal-delay-7 { transition-delay: 560ms; }
+.section-reveal-delay-8 { transition-delay: 640ms; }
+
+/* ── Nav Link Underline ──────────────────────────────────── */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--ink);
+  transition: width var(--duration-base) var(--ease-out-expo);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link {
+  transition: opacity var(--duration-fast) var(--ease-out-expo);
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* ── Project Card Refined Hover ──────────────────────────── */
+.project-card-inner {
+  transition:
+    transform var(--duration-base) var(--ease-out-expo),
+    border-color var(--duration-base) var(--ease-out-expo),
+    box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+.project-card-inner:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink-3);
+  box-shadow: 0 4px 20px rgba(17, 17, 16, 0.06);
+}
+
+/* ── Focus & Selection preserved ──────────────────────────── */
