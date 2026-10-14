@@ -5,10 +5,13 @@ const Cursor = () => {
   const ringRef = useRef(null);
   const canvasRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
-  const reducedMotion = useRef(
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    window.innerWidth < 768
-  ).current;
+  const [reducedMotion] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.innerWidth < 768
+    );
+  });
 
   useEffect(() => {
     const mouse = { x: -100, y: -100 };
@@ -68,8 +71,16 @@ const Cursor = () => {
     window.addEventListener('mousemove', handleMouseMove);
     updateInteractives();
 
+    let particleRgb = getComputedStyle(document.documentElement).getPropertyValue('--particle-rgb').trim() || '17, 17, 16';
+    const updateThemeColor = () => {
+      particleRgb = getComputedStyle(document.documentElement).getPropertyValue('--particle-rgb').trim() || '17, 17, 16';
+    };
+
     const observer = new MutationObserver(updateInteractives);
     observer.observe(document.body, { childList: true, subtree: true });
+
+    const themeObserver = new MutationObserver(updateThemeColor);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     // ── Animation Loop ───────────────────────────────────────
     const animate = () => {
@@ -110,7 +121,7 @@ const Cursor = () => {
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(17, 17, 16, ${p.opacity})`;
+          ctx.fillStyle = `rgba(${particleRgb}, ${p.opacity})`;
           ctx.fill();
         });
       }
@@ -125,8 +136,9 @@ const Cursor = () => {
       window.removeEventListener('resize', initCanvas);
       cancelAnimationFrame(animFrame);
       observer.disconnect();
+      themeObserver.disconnect();
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <>

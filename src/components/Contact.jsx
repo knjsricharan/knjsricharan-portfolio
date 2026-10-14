@@ -4,6 +4,14 @@ import emailjs from '@emailjs/browser';
 import { ArrowRight } from 'lucide-react';
 import { useDirectionalReveal } from '../hooks/useDirectionalReveal';
 
+// TODO: Replace these placeholder values with your actual EmailJS credentials.
+// Get your keys at https://www.emailjs.com/
+const EMAILJS_CONFIG = {
+  serviceId: 'YOUR_SERVICE_ID',
+  templateId: 'YOUR_TEMPLATE_ID',
+  publicKey: 'YOUR_PUBLIC_KEY',
+};
+
 const ease = [0.16, 1, 0.3, 1];
 
 const Contact = () => {
@@ -16,10 +24,10 @@ const Contact = () => {
     setStatus('sending');
 
     emailjs.sendForm(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
+      EMAILJS_CONFIG.serviceId,
+      EMAILJS_CONFIG.templateId,
       formRef.current,
-      'YOUR_PUBLIC_KEY'
+      EMAILJS_CONFIG.publicKey
     )
       .then(() => {
         setStatus('success');
@@ -81,14 +89,15 @@ const Contact = () => {
                 name="user_name"
                 placeholder="Your name"
                 required
-                className="w-full bg-white focus:outline-none"
+                className="w-full focus:outline-none"
                 style={{
                   border: '1px solid var(--rule)',
+                  backgroundColor: 'var(--surface)',
                   padding: '0.9rem 1rem',
                   fontSize: '15px',
                   borderRadius: '0',
                   color: 'var(--ink)',
-                  transition: 'border-color 200ms ease'
+                  transition: 'border-color 200ms ease, background-color 200ms ease, color 200ms ease'
                 }}
                 onFocus={(e) => e.target.style.borderColor = 'var(--ink)'}
                 onBlur={(e) => e.target.style.borderColor = 'var(--rule)'}
@@ -102,14 +111,15 @@ const Contact = () => {
                 name="user_email"
                 placeholder="sricharan812006@gmail.com"
                 required
-                className="w-full bg-white focus:outline-none"
+                className="w-full focus:outline-none"
                 style={{
                   border: '1px solid var(--rule)',
+                  backgroundColor: 'var(--surface)',
                   padding: '0.9rem 1rem',
                   fontSize: '15px',
                   borderRadius: '0',
                   color: 'var(--ink)',
-                  transition: 'border-color 200ms ease'
+                  transition: 'border-color 200ms ease, background-color 200ms ease, color 200ms ease'
                 }}
                 onFocus={(e) => e.target.style.borderColor = 'var(--ink)'}
                 onBlur={(e) => e.target.style.borderColor = 'var(--rule)'}
@@ -122,15 +132,16 @@ const Contact = () => {
                 name="message"
                 placeholder="What are you working on?"
                 required
-                className="w-full bg-white focus:outline-none resize-y"
+                className="w-full focus:outline-none resize-y"
                 style={{
                   height: '150px',
                   border: '1px solid var(--rule)',
+                  backgroundColor: 'var(--surface)',
                   padding: '0.9rem 1rem',
                   fontSize: '15px',
                   borderRadius: '0',
                   color: 'var(--ink)',
-                  transition: 'border-color 200ms ease'
+                  transition: 'border-color 200ms ease, background-color 200ms ease, color 200ms ease'
                 }}
                 onFocus={(e) => e.target.style.borderColor = 'var(--ink)'}
                 onBlur={(e) => e.target.style.borderColor = 'var(--rule)'}
@@ -143,13 +154,13 @@ const Contact = () => {
               className="w-max mt-2 font-mono uppercase tracking-wider flex items-center gap-3"
               style={{
                 backgroundColor: 'var(--ink)',
-                color: '#FFFFFF',
+                color: 'var(--bg)',
                 fontSize: '12px',
                 letterSpacing: '0.08em',
                 padding: '0.9rem 2rem',
                 border: 'none',
                 cursor: status === 'sending' ? 'not-allowed' : 'pointer',
-                transition: 'opacity 200ms ease'
+                transition: 'opacity 200ms ease, background-color 200ms ease, color 200ms ease'
               }}
               whileHover={{ x: 2 }}
               whileTap={{ scale: 0.98 }}

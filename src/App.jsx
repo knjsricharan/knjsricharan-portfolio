@@ -1,18 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Navbar   from './components/Navbar';
-import Hero     from './components/Hero';
-import Projects from './components/Projects';
-import About    from './components/About';
-import Skills   from './components/Skills';
+import Navbar     from './components/Navbar';
+import Hero       from './components/Hero';
+import About      from './components/About';
+import Projects   from './components/Projects';
 // import Blog     from './components/Blog';
-import Contact  from './components/Contact';
-import Footer   from './components/Footer';
-import Cursor   from './components/Cursor';
+import Contact    from './components/Contact';
+import Footer     from './components/Footer';
+import Cursor     from './components/Cursor';
 
 // Detail Pages
 import CVInsightsDetail from './pages/CVInsightsDetail';
 import CJAssistDetail from './pages/CJAssistDetail';
+import CAGDetail from './pages/CAGDetail';
 
 let lastScrollY = 0;
 
@@ -62,9 +62,8 @@ function PortfolioMain() {
   return (
     <main>
       <Hero />
-      <Projects />
       <About />
-      <Skills />
+      <Projects />
       <Contact />
     </main>
   );
@@ -81,6 +80,7 @@ function App() {
         <Route path="/" element={<PortfolioMain />} />
         <Route path="/projects/cvinsights" element={<CVInsightsDetail />} />
         <Route path="/projects/cj-assist" element={<CJAssistDetail />} />
+        <Route path="/projects/cag" element={<CAGDetail />} />
       </Routes>
       <Footer />
     </>

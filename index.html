@@ -5,6 +5,21 @@
     <link rel="icon" type="image/png" href="/cj-tab.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Charan-Portfolio</title>
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var valid = ['light', 'beige', 'dark-grey', 'dark'];
+          if (saved && valid.indexOf(saved) !== -1) {
+            document.documentElement.setAttribute('data-theme', saved);
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -12,7 +12,7 @@ This document serves as a comprehensive log of all architectural, structural, an
 ## 2. Global Design System (`src/index.css`)
 - **Color Palette**: Minimalist high-contrast variables established (`--bg`, `--ink`, `--ink-2`, `--ink-3`, `--rule`).
 - **Typography**: 
-  - **Headings**: `Playfair Display` (elegance and high contrast).
+  - **Headings**: `DM Serif Display` (elegance and high contrast).
   - **Body**: `Inter` (readability).
   - **Labels/Tags**: `IBM Plex Mono` (technical, mechanical feel).
 - **Animation Standard**: Every animated element across the site uses a uniform `framer-motion` sequence: 

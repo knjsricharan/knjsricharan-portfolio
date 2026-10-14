@@ -5,12 +5,19 @@
 @tailwind utilities;
 
 /* ── Design Tokens ───────────────────────────────────────── */
-:root {
-  --bg:    #F5F5F5;
-  --ink:   #111110;
-  --ink-2: #444441;
-  --ink-3: #888780;
-  --rule:  #D3D1C7;
+:root,
+:root[data-theme="light"] {
+  --bg:             #F5F5F5;
+  --surface:        #FFFFFF;
+  --surface-hover:  #ECEAE4;
+  --card-bg:        #FFFFFF;
+  --ink:            #111110;
+  --ink-2:          #444441;
+  --ink-3:          #888780;
+  --rule:           #D3D1C7;
+  --particle-rgb:   17, 17, 16;
+  --nav-backdrop:   rgba(245, 245, 245, 0.90);
+  --dropdown-shadow: 0 12px 30px rgba(17, 17, 16, 0.08);
 
   --font-heading: 'DM Serif Display', Georgia, serif;
   --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
@@ -23,6 +30,48 @@
   --duration-base: 400ms;
   --duration-slow: 600ms;
   --duration-reveal: 700ms;
+}
+
+:root[data-theme="beige"] {
+  --bg:             #F4EFEA;
+  --surface:        #FCFAF7;
+  --surface-hover:  #EBE3D7;
+  --card-bg:        #FAF6F0;
+  --ink:            #24201C;
+  --ink-2:          #5A524A;
+  --ink-3:          #8F8578;
+  --rule:           #DBD4C7;
+  --particle-rgb:   36, 32, 28;
+  --nav-backdrop:   rgba(244, 239, 234, 0.90);
+  --dropdown-shadow: 0 12px 30px rgba(36, 32, 28, 0.1);
+}
+
+:root[data-theme="dark-grey"] {
+  --bg:             #1E2024;
+  --surface:        #272A30;
+  --surface-hover:  #333842;
+  --card-bg:        #25282E;
+  --ink:            #F0F2F5;
+  --ink-2:          #A2A8B3;
+  --ink-3:          #6E7582;
+  --rule:           #363B43;
+  --particle-rgb:   240, 242, 245;
+  --nav-backdrop:   rgba(30, 32, 36, 0.90);
+  --dropdown-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="dark"] {
+  --bg:             #0C0C0D;
+  --surface:        #161719;
+  --surface-hover:  #232529;
+  --card-bg:        #141517;
+  --ink:            #F7F7F7;
+  --ink-2:          #A3A3A3;
+  --ink-3:          #666666;
+  --rule:           #252629;
+  --particle-rgb:   247, 247, 247;
+  --nav-backdrop:   rgba(12, 12, 13, 0.90);
+  --dropdown-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
 }
 
 /* ── Reduced Motion ──────────────────────────────────────── */
@@ -81,7 +130,17 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
+
+nav,
+.project-card-inner,
+input,
+textarea,
+hr {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
 
 /* ── Content Width Constraint ────────────────────────────── */
 .container {

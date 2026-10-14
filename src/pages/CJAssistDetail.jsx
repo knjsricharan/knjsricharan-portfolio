@@ -54,113 +54,54 @@ const CJAssistDetail = () => {
           className="italic mb-8"
           style={{ fontSize: '18px', color: 'var(--ink-2)' }}
         >
-          Multi-provider AI comparison platform with real-time cost and latency tracking
+          Multi-provider AI workspace for 5+ LLMs with BYOK routing and a real-time monitoring dashboard (latency, tokens, cost).
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.2 }}
-          className="flex flex-wrap gap-4"
-        >
-          <a
-            href="https://github.com/knjsricharan/cj-assist"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2.5 font-medium"
-            style={{
-              backgroundColor: 'transparent',
-              color: 'var(--ink)',
-              fontSize: '13px',
-              border: '1px solid var(--ink)',
-              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            GitHub &rarr;
-          </a>
-          <a
-            href="https://cj-assist.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2.5 font-medium"
-            style={{
-              backgroundColor: 'var(--ink)',
-              color: 'var(--bg)',
-              fontSize: '13px',
-              border: '1px solid var(--ink)',
-              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-          >
-            Live Demo &rarr;
-          </a>
-        </motion.div>
       </header>
 
       <hr className="my-8" style={{ borderTop: '1px solid var(--rule)' }} />
 
       <div className="flex flex-col gap-12" style={{ color: 'var(--ink)' }}>
 
+        {/* 1. Problem */}
         <section>
           <SectionLabel>Problem</SectionLabel>
           <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
-            Users have no unified interface to compare multiple AI models on response quality, speed, and cost &mdash; making informed model selection difficult.
+            Evaluating outputs, response latency, token consumption, and cost across multiple Large Language Model (LLM) providers requires navigating disparate developer consoles, disparate SDKs, and fragmented billing structures.
           </p>
         </section>
 
+        {/* 2. What I built */}
         <section>
-          <SectionLabel>Solution</SectionLabel>
-          <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
-            CJ Assist fans a single prompt to multiple providers simultaneously, returning side-by-side outputs with per-response cost, latency, and token metadata.
+          <SectionLabel>What I built</SectionLabel>
+          <p className="mb-4" style={{ fontSize: '16px', lineHeight: 1.6 }}>
+            Developed a multi-provider AI workspace supporting 5+ LLMs with client-side Bring-Your-Own-Key (BYOK) routing:
           </p>
-        </section>
-
-        <section>
-          <SectionLabel>Key Features</SectionLabel>
-          <ul className="list-disc list-inside space-y-2" style={{ fontSize: '15px' }}>
-            <li>Bring-your-own API key (6 providers: OpenAI, Gemini, Anthropic, Groq, OpenRouter, HuggingFace)</li>
-            <li>Auto-detects provider from API key format</li>
-            <li>Compare Mode: parallel responses side by side</li>
-            <li>Per-response latency (ms), token count, cost ($)</li>
-            <li>Privacy-first: keys stored in localStorage only</li>
-            <li>Graceful error handling and rate limit recovery</li>
+          <ul className="list-disc list-inside space-y-2 mb-4" style={{ fontSize: '15px' }}>
+            <li>Direct BYOK integration connecting to provider REST APIs without server-side key persistence.</li>
+            <li>Multi-model interaction layer allowing prompt execution across distinct AI models.</li>
+            <li>Real-time performance instrumentation tracking request latency, token counts, and computed cost per query.</li>
+            <li>Visual analytics dashboard built with Recharts displaying comparative performance metrics.</li>
+            <li>Client-side state management maintaining query history and API configurations securely in browser storage.</li>
           </ul>
         </section>
 
+        {/* 3. Stack */}
         <section>
-          <SectionLabel>Technical Design</SectionLabel>
-          <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
-            Pure frontend architecture &mdash; no backend required. All API calls made client-side. Provider abstraction layer normalizes requests across different API formats. Cost computed from provider token pricing tables.
-          </p>
-        </section>
-
-        <section>
-          <SectionLabel>Tech Stack</SectionLabel>
+          <SectionLabel>Stack</SectionLabel>
           <div className="overflow-x-auto">
             <table className="w-full text-left" style={{ fontSize: '15px' }}>
               <tbody>
                 <tr className="border-b" style={{ borderColor: 'var(--rule)' }}>
                   <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>Frontend</th>
-                  <td className="py-3">React (Vite), Custom CSS</td>
+                  <td className="py-3">React (Vite), TailwindCSS</td>
                 </tr>
                 <tr className="border-b" style={{ borderColor: 'var(--rule)' }}>
-                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>HTTP Client</th>
-                  <td className="py-3">Axios</td>
+                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>Networking</th>
+                  <td className="py-3">Axios, REST APIs</td>
                 </tr>
                 <tr className="border-b" style={{ borderColor: 'var(--rule)' }}>
-                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>Charts</th>
+                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>Data Visualization</th>
                   <td className="py-3">Recharts</td>
-                </tr>
-                <tr className="border-b" style={{ borderColor: 'var(--rule)' }}>
-                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>AI Routing</th>
-                  <td className="py-3">OpenRouter + direct provider APIs</td>
-                </tr>
-                <tr className="border-b" style={{ borderColor: 'var(--rule)' }}>
-                  <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>State</th>
-                  <td className="py-3">localStorage</td>
                 </tr>
                 <tr>
                   <th className="py-3 font-normal" style={{ color: 'var(--ink-2)' }}>Deployment</th>
@@ -171,17 +112,52 @@ const CJAssistDetail = () => {
           </div>
         </section>
 
+        {/* 4. Outcome */}
         <section>
-          <div
-            className="w-full h-[400px] flex flex-col items-center justify-center border"
-            style={{
-              backgroundColor: 'var(--bg)',
-              borderColor: 'var(--rule)'
-            }}
-          >
-            <div className="font-mono uppercase tracking-widest" style={{ fontSize: '12px', color: 'var(--ink-3)' }}>
-              Project Screenshot &mdash; Coming Soon
-            </div>
+          <SectionLabel>Outcome</SectionLabel>
+          <p style={{ fontSize: '16px', lineHeight: 1.6 }}>
+            Provided a unified testing and evaluation workspace where users can switch between 5+ models in real time, compare output quality, observe latency and cost trade-offs, and maintain full custody over their credentials.
+          </p>
+        </section>
+
+        {/* 5. Links */}
+        <section>
+          <SectionLabel>Links</SectionLabel>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="https://cj-assist.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 font-medium inline-block"
+              style={{
+                backgroundColor: 'var(--ink)',
+                color: 'var(--bg)',
+                fontSize: '13px',
+                border: '1px solid var(--ink)',
+                transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              Live Demo &rarr;
+            </a>
+            <a
+              href="https://github.com/knjsricharan/cj-assist"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 font-medium inline-block"
+              style={{
+                backgroundColor: 'transparent',
+                color: 'var(--ink)',
+                fontSize: '13px',
+                border: '1px solid var(--ink)',
+                transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              GitHub &rarr;
+            </a>
           </div>
         </section>
 

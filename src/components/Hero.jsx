@@ -18,7 +18,7 @@ const Hero = () => {
         transition={{ duration: 0.7, ease }}
         className="section-reveal section-label mb-6"
       >
-        AI/ML Developer · Full-Stack · Python &amp; FastAPI
+        CS Undergrad &middot; ServiceNow CSA &middot; Python &amp; SQL
       </motion.div>
 
       {/* Text Content */}
@@ -44,10 +44,10 @@ const Hero = () => {
         </h1>
 
         <p
-          className="mb-12 max-w-[640px]"
+          className="mb-12 max-w-[680px]"
           style={{ fontSize: '18px', color: 'var(--ink-2)', lineHeight: 1.7 }}
         >
-          Student developer shipping production-grade AI backends — from deterministic scoring engines to multi-provider platforms. Open to internships, full-time, and freelance.
+          CS undergraduate and ServiceNow Certified System Administrator with a foundation in application support, Python scripting, and cloud deployment.
         </p>
 
         <div className="flex flex-wrap items-center gap-5">
