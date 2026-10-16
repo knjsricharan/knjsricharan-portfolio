@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/cj-tab.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Charan-Portfolio</title>
+    <meta name="theme-color" content="#050505" />
+    <meta name="description" content="Sri Charan Kurada — Computer Science undergraduate building intelligent enterprise systems." />
+    <title>Sri Charan Kurada — Portfolio</title>
     <script>
       (function() {
         try {
           var saved = localStorage.getItem('portfolio-theme');
-          var valid = ['light', 'beige', 'dark-grey', 'dark'];
+          var valid = ['light', 'dark'];
           if (saved && valid.indexOf(saved) !== -1) {
             document.documentElement.setAttribute('data-theme', saved);
           } else {
-            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-theme', 'dark');
           }
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.setAttribute('data-theme', 'dark');
         }
       })();
     </script>

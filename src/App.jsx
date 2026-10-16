@@ -92,7 +92,8 @@ function App() {
       els.forEach((el, index) => {
         const shiftX = Math.sin(scrolled + index) * 5;
         const shiftY = Math.cos(scrolled + index) * 5;
-        el.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
+        el.style.setProperty('--scroll-x', `${shiftX}px`);
+        el.style.setProperty('--scroll-y', `${shiftY}px`);
       });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -113,6 +114,7 @@ function App() {
             position: absolute; width: 2px; height: 2px; border-radius: 50%;
             background: rgba(224, 230, 238, 0.6); box-shadow: 0 0 4px rgba(224, 230, 238, 0.3);
             opacity: 0.6; z-index: 1; pointer-events: none;
+            --scroll-x: 0px; --scroll-y: 0px;
             animation: p-drift var(--dur) ease-in-out var(--del) infinite !important;
             will-change: transform; transition: transform 0.3s ease-out;
           }

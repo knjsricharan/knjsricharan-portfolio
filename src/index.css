@@ -117,10 +117,10 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 500; }
   box-shadow: 0 0 8px rgba(104, 155, 255, .4) !important;
 }
 @keyframes particle-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(.65); opacity: 0; }
-  20% { opacity: .3; }
-  50% { transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(1.2); opacity: .6; }
-  80% { opacity: .2; }
+  0%, 100% { transform: translate3d(var(--ix, 0px), var(--iy, 0px), 0) scale(.65); opacity: 0; }
+  25% { opacity: .35; }
+  50% { transform: translate3d(calc(var(--ix, 0px) + var(--drift-x)), calc(var(--iy, 0px) + var(--drift-y)), 0) scale(1.2); opacity: .7; }
+  75% { opacity: .2; }
 }
 [data-theme='light'] .cinematic-background { background: var(--bg); }
 [data-theme='light'] .cinematic-background::before {

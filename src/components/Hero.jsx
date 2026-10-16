@@ -1,121 +1,89 @@
-import { motion } from 'framer-motion';
-import { useDirectionalReveal } from '../hooks/useDirectionalReveal';
+import { useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { PORTFOLIO_DATA } from '../data/portfolio';
 
-const ease = [0.16, 1, 0.3, 1];
+export default function Hero() {
+  const reduceMotion = useReducedMotion();
+  const intro = reduceMotion ? {} : { initial: { opacity: 0, y: 18 }, animate: { opacity: 1, y: 0 } };
 
-const Hero = () => {
-  const sectionRef = useDirectionalReveal();
+  const phrases = [
+    "Building Practical Software Solutions",
+    "Developing Enterprise Applications",
+    "Exploring AI/ML and Software Engineering"
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [subtext, setSubtext] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setSubtext(phrases[0]);
+      return;
+    }
+
+    const currentPhrase = phrases[index];
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting && subtext === currentPhrase) {
+        // Pause at the end of the phrase
+        setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && subtext === '') {
+        setIsDeleting(false);
+        setIndex((prev) => (prev + 1) % phrases.length);
+      } else {
+        const nextChar = isDeleting
+          ? subtext.slice(0, -1)
+          : currentPhrase.slice(0, subtext.length + 1);
+        setSubtext(nextChar);
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [subtext, isDeleting, index, reduceMotion]);
 
   return (
-    <section id="hero" className="py-32" ref={sectionRef}>
-      <div className="w-full max-w-[1100px] mx-auto px-8">
+    <section id="hero" className="hero-section section-anchor">
+      <div className="hero-content">
+        <motion.p {...intro} transition={{ duration: 0.65 }} className="eyebrow font-mono">
+          COMPUTER SCIENCE · SERVICENOW
+        </motion.p>
+        <motion.h1 {...intro} transition={{ duration: 0.7, delay: 0.08 }}>
+          Engineering <span className="text-blue-italic">Intelligent</span> Enterprise Systems.
+        </motion.h1>
+        <motion.p {...intro} transition={{ duration: 0.7, delay: 0.16 }} className="hero-description">
+          {PORTFOLIO_DATA.profile.description}
+        </motion.p>
 
-      {/* Label */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-60px' }}
-        transition={{ duration: 0.7, ease }}
-        className="section-reveal section-label mb-6"
-      >
-        CS Undergrad &middot; ServiceNow CSA &middot; Python &amp; SQL
-      </motion.div>
-
-      {/* Text Content */}
-      <motion.div
-        className="max-w-[900px] text-left"
-        initial={{ opacity: 0, y: 22 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-60px' }}
-        transition={{ duration: 0.7, ease, delay: 0.1 }}
-      >
-        <h1
-          className="mb-8"
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.8rem, 6vw, 64px)',
-            lineHeight: 1.1,
-            color: 'var(--ink)'
-          }}
+        <motion.div
+          {...intro}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="typewriter-container font-mono text-lg md:text-xl h-auto flex items-center justify-center pt-2 pb-8"
         >
-          I build systems that think,
-          <br className="hidden md:block" />
-          not just tools that respond.
-        </h1>
+          <span className="typewriter-text">{subtext}</span>
+          <span className="typewriter-cursor">|</span>
+        </motion.div>
 
-        <p
-          className="mb-12 max-w-[680px]"
-          style={{ fontSize: '18px', color: 'var(--ink-2)', lineHeight: 1.7 }}
-        >
-          CS undergraduate and ServiceNow Certified System Administrator with a foundation in application support, Python scripting, and cloud deployment.
-        </p>
-
-        <div className="flex flex-wrap items-center gap-5">
-          <motion.a
-            href="#projects"
-            className="inline-flex items-center justify-center px-7 h-[46px]"
-            style={{
-              backgroundColor: 'var(--ink)',
-              color: 'var(--bg)',
-              fontSize: '13px',
-              letterSpacing: '0.05em',
-              lineHeight: 1,
-              border: '1px solid var(--ink)',
-              boxSizing: 'border-box',
-              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease'
-            }}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.99 }}
-            transition={{ duration: 0.2 }}
-          >
-            View Projects
-          </motion.a>
-          <motion.a
-            href="https://github.com/knjsricharan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-7 h-[46px]"
-            style={{
-              backgroundColor: 'transparent',
-              color: 'var(--ink)',
-              fontSize: '13px',
-              letterSpacing: '0.05em',
-              lineHeight: 1,
-              border: '1px solid var(--rule)',
-              boxSizing: 'border-box',
-              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, border-color 200ms ease'
-            }}
-            whileHover={{ y: -1 }}
-            whileTap={{ scale: 0.99 }}
-            transition={{ duration: 0.2 }}
-          >
-            GitHub &rarr;
-          </motion.a>
-          <motion.a
-            href="/resume.pdf"
-            className="inline-flex items-center justify-center px-7 h-[46px]"
-            style={{
-              backgroundColor: 'transparent',
-              color: 'var(--ink)',
-              fontSize: '13px',
-              letterSpacing: '0.05em',
-              lineHeight: 1,
-              border: '1px solid var(--rule)',
-              boxSizing: 'border-box',
-              transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, border-color 200ms ease'
-            }}
-            whileHover={{ y: -1 }}
-            whileTap={{ scale: 0.99 }}
-            transition={{ duration: 0.2 }}
-          >
-            Resume &rarr;
-          </motion.a>
-        </div>
-      </motion.div>
-
+        <motion.div {...intro} transition={{ duration: 0.7, delay: 0.24 }} className="hero-actions">
+          <a className="button button-primary" href="#projects">Explore Projects</a>
+          <a className="button button-secondary" href="https://github.com/knjsricharan" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </motion.div>
       </div>
+
+      <style jsx>{`
+        .typewriter-container {
+          color: var(--accent-blue);
+        }
+        .typewriter-cursor {
+          color: var(--accent-blue);
+          animation: blink 1s step-end infinite;
+          margin-left: 3px;
+        }
+        @keyframes blink {
+          from, to { color: transparent }
+          50% { color: var(--accent-blue) }
+        }
+      `}</style>
     </section>
   );
-};
-
-export default Hero;
+}

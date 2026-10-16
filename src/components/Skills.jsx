@@ -1,15 +1,29 @@
-// Skills.jsx - The standalone "Technologies & Tools" section was deleted
-// and folded into About.jsx per the homepage restructure.
-// Reusable ProjectTag component for project card tags.
+import { motion, useReducedMotion } from 'framer-motion';
+import { PORTFOLIO_DATA } from '../data/portfolio';
 
-export const ProjectTag = ({ tag }) => (
-  <span
-    className="font-mono text-[10px] px-2 py-1 border border-[var(--rule)] text-[var(--ink-3)] uppercase tracking-tighter cursor-default"
-  >
-    {tag}
-  </span>
-);
+export default function Skills() {
+  const reduceMotion = useReducedMotion();
+  const reveal = reduceMotion ? {} : { initial: { opacity: 0, y: 14 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: false, amount: 0.12 } };
 
-const Skills = () => null;
-
-export default Skills;
+  return (
+    <section id="skills" className="content-section section-anchor">
+      <motion.div {...reveal} transition={{ duration: 0.5 }} className="section-heading-row">
+        <div>
+          <p className="eyebrow font-mono">CAPABILITIES</p>
+          <h2 className="section-title">Skills &amp; Technologies</h2>
+        </div>
+        <p className="section-intro">Tools and technologies used across enterprise workflows, software, and AI projects.</p>
+      </motion.div>
+      <div className="skills-grid">
+        {PORTFOLIO_DATA.skills.map((group, index) => (
+          <motion.article {...reveal} transition={{ duration: 0.5, delay: index * 0.04 }} key={group.category} className="skill-card">
+            <h3>{group.category}</h3>
+            <ul className="skill-list">
+              {group.items.map((skill) => <li key={skill}>{skill}</li>)}
+            </ul>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}

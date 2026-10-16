@@ -32,6 +32,14 @@ Minimalist, high-performance personal portfolio built with React, Vite, and Tail
   - **Swatch Dropdown**: Each theme row displays an authentic color circle swatch on the left and the theme name on the right.
   - **Persistent & Reactive**: Persists in `localStorage`, syncs across browser tabs, and applies zero-FOUC pre-hydration script in `index.html`.
 - **Interactive Cursor & Dynamic Particle Canvas**: Custom floating dot and ring cursor with an ambient particle system that dynamically matches the active theme's palette.
+- **Galaxy Background Particles (`BackgroundTypography.jsx`)**: A 320-dot star field scattered across the full screen behind the giant **CJ08** watermark, with the following behavior:
+  - **Idle Drift & Twinkle**: At rest, every dot gently floats (slow per-dot sine drift, per-dot phases so they never move in unison) and blinks like stars in space via the CSS `particle-drift` keyframes (opacity pulse + ±20px orbit drift).
+  - **Hover Ring (Mouse)**: Moving the cursor page-wide pulls nearby dots into a subtle circular ring around the pointer; the ring centre follows the cursor with a smooth, slightly delayed ease. Leaving the page dissolves the ring back to rest.
+  - **Click / Tap Gather**: Clicking or tapping anywhere gathers nearby dots into a circle centered exactly on that point; the dots animate smoothly into the circle (quick taps hold it ~650ms for visibility, then it gently dissolves).
+  - **Touch Drag Follow**: Dragging a finger across the screen keeps the particle interaction centred on the touch position.
+  - **Scroll Parallax**: Page scroll drives a small, cinematic depth-based particle shift (capped ≈40px) plus a tiny organic wave. The **CJ08 watermark itself stays static** — only the particles move.
+  - **Performance**: Single idling `requestAnimationFrame` loop (sleeps when nothing moves), cached particle base positions with zero layout reads per frame, writes throttled to sub-pixel changes, no React re-renders, and a minimal set of passive pointer/touch/scroll listeners (Pointer Events with mouse/touch fallback).
+  - **Accessibility**: Fully disabled under `prefers-reduced-motion` (dots remain static), including mid-session preference changes.
 - **Directional Scroll Reveals**: Smooth entry animations driven by Framer Motion and intersection observers.
 - **Scroll Progress Indicator**: High-precision top progress bar tracking scroll depth.
 - **Detailed Project Case Studies**: Dedicated routes for in-depth engineering breakdowns, architecture diagrams, and stack specifications.
@@ -45,6 +53,7 @@ src/
 ├── assets/                  # Static media and images
 ├── components/
 │   ├── About.jsx            # Bio, profile portrait, education, and skill pills
+│   ├── BackgroundTypography.jsx # Galaxy star-field particles, hover ring / tap gather / scroll parallax, CJ08 watermark
 │   ├── Blog.jsx             # Technical writing preview cards
 │   ├── Contact.jsx          # EmailJS-integrated contact form
 │   ├── Cursor.jsx           # Custom cursor and theme-reactive particle canvas

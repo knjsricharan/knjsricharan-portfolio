@@ -18,7 +18,7 @@ const CJAssistDetail = () => {
       initial={{ opacity: 0, y: 22 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease }}
-      className="w-full max-w-[800px] mx-auto py-16 px-8 text-left"
+      className="w-full max-w-[800px] mx-auto pt-28 pb-16 px-8 text-left"
     >
       <Link
         to="/"
@@ -134,6 +134,7 @@ const CJAssistDetail = () => {
                 color: 'var(--bg)',
                 fontSize: '13px',
                 border: '1px solid var(--ink)',
+                borderRadius: 'var(--radius-pill)',
                 transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
@@ -151,6 +152,7 @@ const CJAssistDetail = () => {
                 color: 'var(--ink)',
                 fontSize: '13px',
                 border: '1px solid var(--ink)',
+                borderRadius: 'var(--radius-pill)',
                 transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)'
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}

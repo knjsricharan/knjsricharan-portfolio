@@ -1,32 +1,20 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
+// Context modules intentionally export their hook and metadata alongside the provider.
+// eslint-disable-next-line react-refresh/only-export-components
 export const THEMES = [
   {
     id: 'light',
     name: 'Light',
-    color: '#F5F5F5',
-    borderColor: '#D3D1C7',
+    color: '#ffffff',
+    borderColor: '#e5e5e5',
     description: 'Crisp & minimal'
-  },
-  {
-    id: 'beige',
-    name: 'Beige',
-    color: '#F4EFEA',
-    borderColor: '#DBD4C7',
-    description: 'Warm & editorial'
-  },
-  {
-    id: 'dark-grey',
-    name: 'Dark Grey',
-    color: '#1E2024',
-    borderColor: '#363B43',
-    description: 'Slate & anthracite'
   },
   {
     id: 'dark',
     name: 'Dark',
-    color: '#0C0C0D',
-    borderColor: '#252629',
+    color: '#050505',
+    borderColor: '#262626',
     description: 'Deep obsidian'
   }
 ];
@@ -41,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
         return saved;
       }
     }
-    return 'light';
+    return 'dark';
   });
 
   const setTheme = (newTheme) => {
@@ -56,7 +44,6 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  // Sync across browser tabs/windows
   useEffect(() => {
     const handleStorage = (e) => {
       if (e.key === 'portfolio-theme' && e.newValue) {
@@ -77,6 +64,7 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
