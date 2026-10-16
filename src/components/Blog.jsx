@@ -46,8 +46,8 @@ const Blog = () => {
           {blogPosts.map((post, index) => (
             <motion.div
               key={index}
-              className="bg-white border p-7 flex flex-col justify-between text-left h-full"
-              style={{ borderColor: 'var(--rule)', borderRadius: '0' }}
+              className="border p-7 flex flex-col justify-between text-left h-full"
+              style={{ borderColor: 'var(--rule)', backgroundColor: 'var(--card-bg)', borderRadius: '0' }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}

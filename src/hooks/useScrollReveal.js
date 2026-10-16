@@ -19,7 +19,6 @@ export function useScrollReveal(options = {}) {
     if (!el) return;
 
     let lastScrollY = window.scrollY;
-    let isVisible = false;
 
     const handleScroll = () => {
       const dir = window.scrollY >= lastScrollY ? 'down' : 'up';
@@ -41,7 +40,6 @@ export function useScrollReveal(options = {}) {
             el.classList.remove('reveal-from-above');
           }
 
-          isVisible = true;
           if (once) observer.unobserve(el);
         } else {
           // Leaving the viewport — fade out
@@ -55,7 +53,6 @@ export function useScrollReveal(options = {}) {
             el.classList.add('is-hidden', 'hide-to-below');
           }
 
-          isVisible = false;
           if (once) observer.unobserve(el);
         }
       },
