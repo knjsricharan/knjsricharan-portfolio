@@ -109,13 +109,16 @@ function App() {
         .particle-container {
           position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #000;
         }
-        .particle-dot {
-          position: absolute; width: 2px; height: 2px; border-radius: 50%;
-          background: rgba(224, 230, 238, 0.6); box-shadow: 0 0 4px rgba(224, 230, 238, 0.3);
-          opacity: 0; z-index: 1; pointer-events: none;
-          animation: p-drift var(--dur) ease-in-out var(--del) infinite !important;
-          will-change: transform, opacity; transition: transform 0.3s ease-out;
-        }
+          .particle-dot {
+            position: absolute; width: 2px; height: 2px; border-radius: 50%;
+            background: rgba(224, 230, 238, 0.6); box-shadow: 0 0 4px rgba(224, 230, 238, 0.3);
+            opacity: 0.6; z-index: 1; pointer-events: none;
+            animation: p-drift var(--dur) ease-in-out var(--del) infinite !important;
+            will-change: transform; transition: transform 0.3s ease-out;
+          }
+          .particle-dot:hover {
+            transform: translate3d(calc(var(--dx) * 2), calc(var(--dy) * 2), 0) scale(1.5);
+          }
         .particle-dot.blue {
           background: rgba(126, 169, 255, 0.7); box-shadow: 0 0 6px rgba(104, 155, 255, 0.4);
         }
