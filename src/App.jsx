@@ -130,7 +130,7 @@ function App() {
         <BackgroundTypography />
         {particles.map((p, i) => (
           <div key={i} className={`particle-dot ${p.blue ? 'blue' : ''}`}
-               style={{ '--particle-x': `${p.x}%`, '--particle-y': `${p.y}%`, '--dx': p.dx, '--dy': p.dy, '--dur': p.dur, '--del': p.del, left: `${p.x}%`, top: `${p.y}%` }}
+               style={{ '--particle-x': `${p.x}%`, '--particle-y': `${p.y}%`, '--dx': p.dx, '--dy': p.dy, '--dur': p.dur, '--del': p.del, left: `${p.x}%`, top: `${p.y}%`, animation: 'none', opacity: 0.6 }}
           />
         ))}
       </div>
