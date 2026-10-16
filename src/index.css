@@ -74,7 +74,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 500; }
   pointer-events: none;
   background:
     radial-gradient(ellipse at 50% 48%, rgba(118, 135, 162, .035), transparent 56%),
-    linear-gradient(180deg, rgba(255, 255, 255, .012), transparent 24%, transparent 76%, rgba(255, 255, 255, .018)), linear-gradient(to left, rgba(74,111,174,0.08) 0%, transparent 45%);
+    linear-gradient(180deg, rgba(255, 255, 255, .012), transparent 24%, transparent 76%, rgba(255, 255, 255, .018)), linear-gradient(to left, rgba(74,111,174,0.15) 0%, transparent 35%);
 }
 .cinematic-watermark {
   position: absolute;
@@ -100,8 +100,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 500; }
   position: absolute !important;
   top: var(--particle-y) !important;
   left: var(--particle-x) !important;
-  width: 3px !important;
-  height: 3px !important;
+  width: 2px !important;
+  height: 2px !important;
   border-radius: 50% !important;
   background: rgba(224, 230, 238, .6) !important;
   box-shadow: 0 0 6px rgba(224, 230, 238, .3) !important;
@@ -126,7 +126,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 500; }
 [data-theme='light'] .cinematic-background::before {
   background:
     radial-gradient(ellipse at 50% 48%, rgba(58, 76, 110, .025), transparent 56%),
-    linear-gradient(180deg, rgba(0, 0, 0, .008), transparent 24%, transparent 76%, rgba(0, 0, 0, .012)), linear-gradient(to left, rgba(74,111,174,0.06) 0%, transparent 45%);
+    linear-gradient(180deg, rgba(0, 0, 0, .008), transparent 24%, transparent 76%, rgba(0, 0, 0, .012)), linear-gradient(to left, rgba(74,111,174,0.12) 0%, transparent 35%);
 }
 [data-theme='light'] .cinematic-watermark {
   background-image: linear-gradient(180deg, rgba(0,0,0,.035), rgba(24,32,46,.09) 40%, rgba(0,0,0,.025) 68%, rgba(36,42,52,.075));
